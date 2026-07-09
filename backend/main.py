@@ -8,7 +8,6 @@ app = FastAPI(
 
 @app.get("/")
 def home():
-
     return {
         "message": "Welcome to StockFlow API"
     }
@@ -16,7 +15,6 @@ def home():
 
 @app.get("/health")
 def health():
-
     return {
         "status": "healthy"
     }
