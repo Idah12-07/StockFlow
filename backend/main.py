@@ -1,20 +1,15 @@
 from fastapi import FastAPI
 
-app = FastAPI(
-    title="StockFlow API",
-    version="1.0.0"
-)
+from app.database.database import Base, engine
+from app.routers.items import router as items_router
+
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(title="StockFlow API")
+
+app.include_router(items_router)
 
 
 @app.get("/")
-def home():
-    return {
-        "message": "Welcome to StockFlow API"
-    }
-
-
-@app.get("/health")
-def health():
-    return {
-        "status": "healthy"
-    }
+def root():
+    return {"message": "Welcome to StockFlow API 🚀"}
